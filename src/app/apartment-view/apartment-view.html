@@ -1,0 +1,97 @@
+@if (apartment$ | async; as apartment) {
+    <div class="wrapper">
+    <h2>Apartment/Building Details</h2>
+    <div class="property-image-placeholder">
+      <img src="assets/carousel-hotel.png" alt="Property Image" />
+    </div>
+
+    <div class="row">
+        <div class="col">
+        <label>Apartment</label>
+        
+        <input [value]="apartment?.apartmentName" readonly>
+        </div>
+
+        <div class="col">
+        <label>Customer</label>
+        <input [value]="apartment?.customerName" readonly>
+        </div>
+    </div>
+
+    <h3>Is this a shared property?</h3>
+    <div>{{ apartment?.isSharedProperty ? 'Yes' : 'No' }}</div>
+
+    <h3>Property Location</h3>
+    <label>Street Address</label>
+    <input [value]="apartment?.streetAddress" readonly>
+    <label>City</label>
+    <input [value]="apartment?.city" readonly>
+
+    <h3>Property Details</h3>
+    <div class="row">
+        <label>Area</label>
+        <input [value]="apartment?.areaSqFt" readonly>
+        <label>Stay Duration</label>
+        <input [value]="apartment?.stayType" readonly>
+    </div>
+
+    <h3>Expected Rent</h3>
+    <div class="row">
+        <input [value]="apartment?.rent" readonly>
+        <input [value]="apartment?.priceMode" readonly>
+    </div>
+
+    <h3>Furnished</h3>
+    <div>{{ apartment?.isFurnished ? 'Yes' : 'No' }}</div>
+
+    <h3>Amenities Included</h3>
+
+    @if (apartment?.amenities?.length > 0) {
+      <div class="amenities-list">
+        @for (amenity of apartment?.amenities; track amenity) {
+          <div class="amenity-item">
+            ✔ {{ amenity }}
+          </div>
+        }
+      </div>
+    } @else {
+      <div>No amenities selected</div>
+    }
+
+    <h3>Description</h3>
+    <input [value]="apartment?.title" readonly>
+    <textarea [value]="apartment?.description" readonly></textarea>
+
+    </div>
+}
+
+<!-- COMMENTS SECTION -->
+
+<div class="comments">
+
+  <h3>Comments</h3>
+
+  @for (comment of comments; track comment.id) {
+    <div class="comment-box">
+        <b>{{comment?.userName}}</b>
+        <p>{{comment?.comment}}</p>
+    </div>
+  }
+
+  <label>Leave a Comment</label>
+
+  <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+
+    <textarea rows="4"
+              formControlName="comment">
+    </textarea>
+
+    @if (commentForm.get('comment')?.touched && commentForm.get('comment')?.invalid) {
+      <div class="err">Comment required</div>
+    }
+
+    <button type="submit">Submit</button>
+
+  </form>
+
+</div>

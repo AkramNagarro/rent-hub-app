@@ -1,0 +1,25 @@
+<header>
+    <nav>
+        <ul>
+            <li>Rent-Hub</li>
+            <li routerLink="/home" >Go To Listing Page</li>
+        </ul>
+    <ul>
+        @if (!authService.isLoggedIn()) {
+            <li routerLink="/login">Renter Login</li>
+        }
+        @if (!authService.isLoggedIn()) {
+            <li routerLink="/landlord/login">Landlord Login</li>
+        }
+        @if (!authService.isLoggedIn()) {
+            <li routerLink="/register">Register</li>
+        }
+        @if (authService.isLoggedIn()) {
+            <li routerLink="/profile">Profile</li>
+        }
+        @if (authService.isLoggedIn()) {
+            <li (click)="authService.logout()" routerLink="/logout">Logout</li>
+        }
+    </ul>
+    </nav>
+</header>

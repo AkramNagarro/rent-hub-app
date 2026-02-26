@@ -1,0 +1,213 @@
+<div class="container">
+
+  <!-- ================= TOP CAROUSEL SECTION ================= -->
+  <div class="top-section">
+
+    <div class="carousel-container">
+
+      <div class="carousel-wrapper"
+           [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+
+        @for (apt of featuredList; track apt.id) {
+          <div class="carousel-slide">
+
+            <!-- LEFT IMAGE -->
+            <div class="featured-image">
+              <img src="assets/carousel-hotel.png"
+                   alt="Featured Apartment">
+            </div>
+
+            <!-- RIGHT DETAILS -->
+            <div class="featured-details">
+
+              <h2>{{ apt.title }}</h2>
+
+              <div class="meta-row">
+                <span class="price">₹ {{ apt.rent }}</span>
+                <span class="type">{{ apt.stayType }}</span>
+                <span class="city">{{ apt.city }}</span>
+              </div>
+
+              <div class="info-row">
+                <span>📐 {{ apt.areaSqFt }} SqFt</span>
+                <span>🏠 {{ apt.isFurnished ? 'Furnished' : 'Unfurnished' }}</span>
+                <span>📍 {{ apt.streetAddress }}</span>
+              </div>
+
+              <p class="description">
+                {{ apt.description }}
+              </p>
+
+              <div class="amenities-preview">
+                @for (a of apt.amenities.slice(0,3); track a) {
+                  <span class="amenity-chip">{{ a }}</span>
+                }
+              </div>
+
+              <div class="actions">
+                <button (click)="viewDetails(apt)">View Details</button>
+
+                <button (click)="toggleFavorite(apt)">
+                  {{ apt.favorite ? '❤️ Favorited' : '♡ Mark as Favorite' }}
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        }
+
+      </div>
+
+      <button class="nav left" (click)="prev()">&#10094;</button>
+      <button class="nav right" (click)="next()">&#10095;</button>
+
+    </div>
+
+  </div>
+  <!-- ================= END TOP SECTION ================= -->
+
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <div class="main-content">
+
+    <!-- LEFT FILTER SIDEBAR -->
+    <div class="filter-sidebar">
+
+      <h3>Filters</h3>
+
+      <!-- Rent Range -->
+      <div class="filter-group">
+        <h4>Rent Range</h4>
+        <select [(ngModel)]="selectedRentRange"
+                (change)="applyFilters()">
+          <option value="">All</option>
+          <option value="0-1000">0 - 1000</option>
+          <option value="1001-5000">1001 - 5000</option>
+          <option value="5001-10000">5001 - 10000</option>
+          <option value="10001-99999">10001 - 99999</option>
+        </select>
+      </div>
+
+      <!-- City -->
+      <div class="filter-group">
+        <h4>City</h4>
+        <input type="text"
+               placeholder="Search city"
+               [(ngModel)]="citySearch"
+               (input)="applyFilters()">
+      </div>
+
+      <!-- Street -->
+      <div class="filter-group">
+        <h4>Street</h4>
+        <input type="text"
+               placeholder="Search street"
+               [(ngModel)]="streetSearch"
+               (input)="applyFilters()">
+      </div>
+
+      <!-- Amenities -->
+      <div class="filter-group">
+        <h4>Amenities</h4>
+
+        @for (a of amenitiesList; track a) {
+          <label class="checkbox-item">
+            <input type="checkbox"
+                   [value]="a"
+                   (change)="onAmenityFilterChange($event)">
+            <span>{{ a }}</span>
+          </label>
+        }
+
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT LISTINGS SECTION -->
+    <div class="listing-section">
+
+      <div class="section-header">
+        <h2>All Listings</h2>
+
+        @if (landlordAuth.isLandlord()) {
+          <a routerLink="/add-property"
+             class="action-link">
+            Add New Property
+          </a>
+        }
+      </div>
+
+      <div class="listing-grid">
+
+        @if (apartments$ | async; as apartments) {
+          @if (filteredApartments.length > 0) {
+
+            @for (apt of filteredApartments; track apt.id) {
+
+              <div class="listing-card">
+
+                <img src="assets/carousel-hotel.png"
+                     class="listing-image" />
+
+                <div class="listing-content">
+
+                  <div class="card-header">
+                    <h4>{{ apt.title }}</h4>
+                    <span class="price">₹ {{ apt.rent }}</span>
+                  </div>
+
+                  <div class="location">
+                    📍 {{ apt.streetAddress }}, {{ apt.city }}
+                  </div>
+
+                  <div class="property-info">
+                    <span>📐 {{ apt.areaSqFt }} SqFt</span>
+                    <span>🏠 {{ apt.isFurnished ? 'Furnished' : 'Unfurnished' }}</span>
+                    <span>🛏 {{ apt.stayType }}</span>
+                  </div>
+
+                  <p class="desc">
+                    {{ apt.description }}
+                  </p>
+
+                  <div class="amenities-preview">
+                    @for (a of apt.amenities.slice(0,2); track a) {
+                      <span class="amenity-chip small">{{ a }}</span>
+                    }
+                  </div>
+
+                  <div class="btn-group">
+                    <button (click)="viewDetails(apt)">
+                      View Details
+                    </button>
+
+                    <button (click)="toggleFavorite(apt)">
+                      {{ apt.favorite ? '❤️ Favorited' : '♡ Mark as Favorite' }}
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            }
+
+          } @else {
+
+            <div class="no-results">
+              No results found
+            </div>
+
+          }
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ================= END MAIN CONTENT ================= -->
+
+</div>

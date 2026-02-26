@@ -1,0 +1,69 @@
+.wrapper {
+  max-width: 1000px;
+  margin: 20px auto;
+  border: 2px solid #000;
+  padding: 20px;
+  font-family: Arial;
+}
+
+h2, h3 {
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.col {
+  flex: 1;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #000;
+}
+
+.err {
+  color: red;
+  font-size: 12px;
+}
+
+.amenities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 40px;
+}
+
+.sq {
+  width: 14px;
+  height: 14px;
+  background: #000;   /* black painted highlighter */
+  display: inline-block;
+  margin-right: 8px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  border: 1px solid #000;
+  background: #eee;
+}
+
+.photo-grid {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.photo-tile {
+  width: 110px;
+  height: 110px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  font-size: 12px;
+}

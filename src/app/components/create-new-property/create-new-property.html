@@ -1,0 +1,165 @@
+
+<form [formGroup]="apartmentForm" (ngSubmit)="submit()" class="wrapper">
+
+  <!-- Header -->
+  <h2>Choose your Apartment/Building</h2>
+
+  <div class="row">
+    <div class="col">
+      <label>Choose your Apartment/Building</label>
+      <input formControlName="apartmentName" placeholder="Select an option">
+      @if (c('apartmentName')?.touched && c('apartmentName')?.invalid) {
+        <div class="err">Required</div>
+      }
+    </div>
+
+    <div class="col">
+      <label>Enter the name of your</label>
+      <input formControlName="customerName">
+      @if (c('customerName')?.touched && c('customerName')?.invalid) {
+        <div class="err">Required</div>
+      }
+    </div>
+  </div>
+
+  <!-- Shared Property -->
+  <h3>Is this a shared property?</h3>
+  <label><input type="radio" [value]="true" formControlName="isSharedProperty"> Yes</label>
+  <label><input type="radio" [value]="false" formControlName="isSharedProperty"> No</label>
+
+  <!-- Shared Property -->
+  <h3>Want it to appear in feature list?</h3>
+  <label><input type="radio" [value]="true" formControlName="featured"> Yes</label>
+  <label><input type="radio" [value]="false" formControlName="featured"> No</label>
+
+  <!-- Location -->
+  <h3>Property Location</h3>
+  <label>Street Address</label>
+  <input formControlName="streetAddress" placeholder="Enter street address">
+  @if (c('streetAddress')?.touched && c('streetAddress')?.invalid) {
+    <div class="err">Required</div>
+  }
+
+  <label>City</label>
+  <input formControlName="city">
+  @if (c('city')?.touched && c('city')?.invalid) {
+    <div class="err">Required</div>
+  }
+
+  <!-- Property Details -->
+  <h3>Property Details</h3>
+
+  <div class="row">
+    <div class="col">
+      <label>Square Feet</label>
+      <input type="number" formControlName="areaSqFt" placeholder="Enter area in square feet">
+      @if (c('areaSqFt')?.touched && c('areaSqFt')?.invalid) {
+        <div class="err">Enter valid number</div>
+      }
+    </div>
+
+    <div class="col">
+      <label>Stay / Lease type</label>
+
+      <label>
+        <input type="radio" value="LongTerm" formControlName="stayType">
+        Long term (6+ months)
+      </label>
+
+      <label>
+        <input type="radio" value="ShortTerm" formControlName="stayType">
+        Short term
+      </label>
+
+      <label>
+        <input type="radio" value="Both" formControlName="stayType">
+        Both
+      </label>
+
+      @if (c('stayType')?.touched && c('stayType')?.invalid) {
+        <div class="err">Select stay type</div>
+      }
+    </div>
+  </div>
+
+  <!-- Rent -->
+  <h3>Expected Rent</h3>
+
+  <div class="row">
+    <div class="col">
+      <label>Expected Rent</label>
+      <input type="number" formControlName="rent" placeholder="Enter expected rent">
+      @if (c('rent')?.touched && c('rent')?.invalid) {
+        <div class="err">Enter valid number</div>
+      }
+    </div>
+
+    <div class="col">
+      <label>Price Mode</label>
+
+      <label>
+        <input type="radio" value="Per Month" formControlName="priceMode">
+        Per Month
+      </label>
+
+      <label>
+        <input type="radio" value="Utilities included" formControlName="priceMode">
+        Utilities included in rent
+      </label>
+
+      @if (c('priceMode')?.touched && c('priceMode')?.invalid) {
+        <div class="err">Select price mode</div>
+      }
+    </div>
+
+  </div>
+
+  <!-- Furnished -->
+  <h3>Is the room/apartment furnished?</h3>
+  <label><input type="radio" [value]="true" formControlName="isFurnished"> Yes</label>
+  <label><input type="radio" [value]="false" formControlName="isFurnished"> No</label>
+
+  <!-- Amenities — BLACK SQUARE HIGHLIGHTERS -->
+  <h3>Amenities included</h3>
+
+  <div class="amenities">
+    @for (a of amenitiesList; track a) {
+      <label>
+        <input
+          type="checkbox"
+          [value]="a"
+          (change)="onAmenityChange($event)">
+        {{ a }}
+      </label>
+    }
+  </div>
+
+  <!-- Photos Upload -->
+  <h3>Photos</h3>
+
+  <input type="file"
+         multiple
+         accept="image/*"
+         (change)="onPhotosSelected($event)">
+
+  <div class="photo-grid">
+    @for (p of apartmentForm.value.photos; track $index) {
+      <div class="photo-tile">
+        <img [src]="getPreview(p)" width="100%">
+      </div>
+    }
+  </div>
+
+
+  <!-- Description -->
+  <h3>Description</h3>
+
+  <label>Title</label>
+  <input formControlName="title" placeholder="Enter your AD title">
+
+  <label>Description</label>
+  <textarea rows="5" formControlName="description"></textarea>
+
+  <button type="submit">Submit</button>
+
+</form>
