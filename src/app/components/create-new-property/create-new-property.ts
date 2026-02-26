@@ -38,7 +38,7 @@ export class CreateNewProperty {
     apartmentName: ['', Validators.required],
     customerName: ['', Validators.required],
 
-    isSharedProperty: [false],   // default No
+    isSharedProperty: [false],
     featured: [false],
 
     streetAddress: ['', Validators.required],
@@ -51,8 +51,8 @@ export class CreateNewProperty {
     stayType: ['', Validators.required],
     priceMode: ['', Validators.required],
 
-    isFurnished: [false],        // default No
-
+    isFurnished: [false],
+    
     title: [''],
     description: [''],
     amenities: [[]]

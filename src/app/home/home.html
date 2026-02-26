@@ -1,6 +1,5 @@
 <div class="container">
 
-  <!-- ================= TOP CAROUSEL SECTION ================= -->
   <div class="top-section">
 
     <div class="carousel-container">
@@ -11,13 +10,11 @@
         @for (apt of featuredList; track apt.id) {
           <div class="carousel-slide">
 
-            <!-- LEFT IMAGE -->
             <div class="featured-image">
               <img src="assets/carousel-hotel.png"
                    alt="Featured Apartment">
             </div>
 
-            <!-- RIGHT DETAILS -->
             <div class="featured-details">
 
               <h2>{{ apt.title }}</h2>
@@ -65,18 +62,13 @@
     </div>
 
   </div>
-  <!-- ================= END TOP SECTION ================= -->
 
-
-  <!-- ================= MAIN CONTENT ================= -->
   <div class="main-content">
 
-    <!-- LEFT FILTER SIDEBAR -->
     <div class="filter-sidebar">
 
       <h3>Filters</h3>
 
-      <!-- Rent Range -->
       <div class="filter-group">
         <h4>Rent Range</h4>
         <select [(ngModel)]="selectedRentRange"
@@ -89,7 +81,6 @@
         </select>
       </div>
 
-      <!-- City -->
       <div class="filter-group">
         <h4>City</h4>
         <input type="text"
@@ -98,7 +89,6 @@
                (input)="applyFilters()">
       </div>
 
-      <!-- Street -->
       <div class="filter-group">
         <h4>Street</h4>
         <input type="text"
@@ -107,7 +97,6 @@
                (input)="applyFilters()">
       </div>
 
-      <!-- Amenities -->
       <div class="filter-group">
         <h4>Amenities</h4>
 
@@ -125,7 +114,6 @@
     </div>
 
 
-    <!-- RIGHT LISTINGS SECTION -->
     <div class="listing-section">
 
       <div class="section-header">
@@ -208,6 +196,5 @@
     </div>
 
   </div>
-  <!-- ================= END MAIN CONTENT ================= -->
 
 </div>

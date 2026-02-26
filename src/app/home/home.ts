@@ -116,7 +116,6 @@ export class Home {
   applyFilters() {
     this.filteredApartments = this.allApartments.filter(apartment => {
 
-      // Rent Filter
       if (this.selectedRentRange) {
         const [min, max] = this.selectedRentRange.split('-').map(Number);
         if (apartment.rent < min || apartment.rent > max) {
@@ -124,19 +123,16 @@ export class Home {
         }
       }
 
-      // City Filter
       if (this.citySearch &&
           !apartment.city?.toLowerCase().includes(this.citySearch.toLowerCase())) {
         return false;
       }
 
-      // Street Filter
       if (this.streetSearch &&
           !apartment.streetAddress?.toLowerCase().includes(this.streetSearch.toLowerCase())) {
         return false;
       }
 
-      // Amenities Filter
       if (this.selectedAmenities.length > 0) {
         const hasAllAmenities = this.selectedAmenities.every(a =>
           apartment.amenities?.includes(a)
