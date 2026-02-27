@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-create-new-property',
