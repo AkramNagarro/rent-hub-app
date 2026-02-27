@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://rent-hub-app.vercel.app'
+  apiUrl: 'https://backend-dj4o.onrender.com'
 };
