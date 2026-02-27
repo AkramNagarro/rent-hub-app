@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-create-new-property',
@@ -14,6 +15,7 @@ import { inject } from '@angular/core';
 
 
 export class CreateNewProperty {
+  private apiUrl = environment.apiUrl;
 
   amenitiesList = [
     'Gym/Fitness Center',
@@ -52,7 +54,7 @@ export class CreateNewProperty {
     priceMode: ['', Validators.required],
 
     isFurnished: [false],
-    
+
     title: [''],
     description: [''],
     amenities: [[]]
@@ -69,7 +71,7 @@ export class CreateNewProperty {
       return;
     }
 
-    this.http.post('http://localhost:3000/apartments', this.apartmentForm.value)
+    this.http.post(this.apiUrl + '/apartments', this.apartmentForm.value)
       .subscribe(() => {
         alert('Property Added');
         this.router.navigate(['/home']);

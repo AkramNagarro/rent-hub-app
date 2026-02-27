@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Apartment } from './apartment.model';
 import { Comment } from './comment.model';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ApartmentService {
-  private apartmentApi = 'http://localhost:3000/apartments';
-  private commentApi = 'http://localhost:3000/comments';
+  private apartmentApi = environment.apiUrl + '/apartments';
+  private commentApi = environment.apiUrl + '/comments';
 
   constructor(private http: HttpClient) {}
 
