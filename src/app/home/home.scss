@@ -265,3 +265,8 @@
   }
 }
 
+@media (max-width: 768px) {
+  .listing-grid {
+    grid-template-columns: 1fr;
+  }
+}
