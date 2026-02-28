@@ -11,3 +11,5 @@ Github url - https://github.com/AkramNagarro/rent-hub-app
 Renter login cred - rahul@gmail.com/123456
 
 Landlord login cred - amit@gmail.com
+
+# Note - Unit test cases are written only for home component.
