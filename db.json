@@ -86,7 +86,7 @@
       "title": "2BHK Furnished Apartment in MG Road",
       "description": "Modern 2BHK near metro station and shopping mall.",
       "featured": true,
-      "favorite": true,
+      "favorite": false,
       "amenities": [
         "Gym/Fitness Center",
         "Swimming Pool",
@@ -489,6 +489,33 @@
         "Gym/Fitness Center",
         "Private Lawn",
         "Security System"
+      ]
+    },
+    {
+      "id": "d177",
+      "apartmentName": "The Vintage Gulmarg",
+      "customerName": "Mohammad Akram",
+      "isSharedProperty": false,
+      "featured": true,
+      "streetAddress": "Station Road",
+      "city": "Gulmarg",
+      "areaSqFt": 2000,
+      "rent": 15000,
+      "photos": [],
+      "stayType": "ShortTerm",
+      "priceMode": "Per Month",
+      "isFurnished": true,
+      "title": "Premium 3 Star Luxirious Hotel",
+      "description": "This is premium hotel in Gulmarg.",
+      "amenities": [
+        "Gym/Fitness Center",
+        "Visitors Parking",
+        "Private Lawn",
+        "Laundry Service",
+        "Swimming Pool",
+        "Power Backup",
+        "Water Heater",
+        "Elevator"
       ]
     }
   ],

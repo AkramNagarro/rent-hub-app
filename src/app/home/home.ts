@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 export class Home {
 
   selectedRentRange: string = '';
+  nameSearch: string = '';
   citySearch: string = '';
   streetSearch: string = '';
   selectedAmenities: string[] = [];
@@ -121,6 +122,11 @@ export class Home {
         if (apartment.rent < min || apartment.rent > max) {
           return false;
         }
+      }
+
+      if (this.nameSearch &&
+          !apartment.apartmentName?.toLowerCase().includes(this.nameSearch.toLowerCase())) {
+        return false;
       }
 
       if (this.citySearch &&

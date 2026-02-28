@@ -14,5 +14,5 @@ export interface Apartment {
   description: string,
   favorite:boolean,
   featured:boolean,
-  amenities:[]
+  amenities:string[]
 }

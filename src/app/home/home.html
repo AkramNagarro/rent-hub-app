@@ -17,7 +17,7 @@
 
             <div class="featured-details">
 
-              <h2>{{ apt.title }}</h2>
+              <h2>{{ apt.apartmentName }}</h2>
 
               <div class="meta-row">
                 <span class="price">₹ {{ apt.rent }}</span>
@@ -82,6 +82,14 @@
       </div>
 
       <div class="filter-group">
+        <h4>Apartment Name</h4>
+        <input type="text"
+               placeholder="Search apartment name"
+               [(ngModel)]="nameSearch"
+               (input)="applyFilters()">
+      </div>
+
+      <div class="filter-group">
         <h4>City</h4>
         <input type="text"
                placeholder="Search city"
@@ -142,7 +150,7 @@
                 <div class="listing-content">
 
                   <div class="card-header">
-                    <h4>{{ apt.title }}</h4>
+                    <h4>{{ apt.apartmentName }}</h4>
                     <span class="price">₹ {{ apt.rent }}</span>
                   </div>
 
